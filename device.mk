@@ -80,10 +80,8 @@ PRODUCT_COPY_FILES += \
     device/htc/vivow/voicemail-conf.xml:system/etc/voicemail-conf.xml \
     device/htc/vivow/apns-conf.xml:system/etc/apns-conf.xml
 
-# Sensors, GPS, Lights
+# GPS
 PRODUCT_PACKAGES += \
-    lights.vivow \
-    sensors.vivow \
     gps.vivow
 
 # Input device calibration files
