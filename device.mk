@@ -171,16 +171,8 @@ PRODUCT_COPY_FILES += \
     device/htc/vivow/dsp/soundimage/srsfx_trumedia_music.cfg:system/etc/soundimage/srsfx_trumedia_music.cfg \
     device/htc/vivow/dsp/soundimage/srsfx_trumedia_voice.cfg:system/etc/soundimage/srsfx_trumedia_voice.cfg
 
-# Wifi firmware
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
-
 PRODUCT_COPY_FILES += \
     device/htc/vivow/vold.fstab:system/etc/vold.fstab
-
-# media config xml file
-PRODUCT_COPY_FILES += \
-    device/htc/vivow/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/vivow/media_profiles.xml:system/etc/media_profiles.xml
 
 # Softkey Rotation Script
 PRODUCT_COPY_FILES += \
