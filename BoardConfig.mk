@@ -36,6 +36,8 @@ USE_CAMERA_STUB := true
 
 TARGET_BOOTLOADER_BOARD_NAME := vivow
 
+TARGET_RECOVERY_FSTAB = device/htc/vivow/ramdisk/fstab.vivow
+
 # Use stock libril for now
 BOARD_HAS_EXTRA_SYS_PROPS := true
 

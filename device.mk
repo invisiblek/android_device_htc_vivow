@@ -171,9 +171,6 @@ PRODUCT_COPY_FILES += \
     device/htc/vivow/dsp/soundimage/srsfx_trumedia_music.cfg:system/etc/soundimage/srsfx_trumedia_music.cfg \
     device/htc/vivow/dsp/soundimage/srsfx_trumedia_voice.cfg:system/etc/soundimage/srsfx_trumedia_voice.cfg
 
-PRODUCT_COPY_FILES += \
-    device/htc/vivow/vold.fstab:system/etc/vold.fstab
-
 # Softkey Rotation Script
 PRODUCT_COPY_FILES += \
     device/htc/vivow/rotate_lights.sh:/system/etc/rotate_lights.sh
