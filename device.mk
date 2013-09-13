@@ -67,7 +67,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cdma.home.operator.numeric = 310012 \
     ro.cdma.home.operator.alpha = Verizon \
     persist.telephony.support_ipv6=true \
-    persist.telephony.support_ipv4=true
+    persist.telephony.support_ipv4=true \
+    ro.telephony.ril.v3=skipdatareg,skipbrokendatacall
 
 # Override /proc/sys/vm/dirty_ratio on UMS
 PRODUCT_PROPERTY_OVERRIDES += \
