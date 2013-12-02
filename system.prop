@@ -3,15 +3,6 @@
 #
 ro.sf.lcd_density=240
 
-debug.sf.hw=1
-debug.composition.type=dyn
-ro.sf.compbypass.enable=1
-dev.pm.dyn_samplingrate=1
-
-# qcom build lub
-com.qc.hardware=true
-com.qc.hdmi_out=false
-
 # Modify MMS APN retry timer from 5s to 2s.
 ro.gsm.2nd_data_retry_config=max_retries=3, 2000, 2000, 2000
 
@@ -58,10 +49,6 @@ ro.cdma.home.operator.alpha=Verizon
 #mobiledata.interfaces=gannet0,rmnet0,rmnet1,rmnet2
 mobiledata.interfaces=rmnet0
 
-# The OpenGL ES API level that is natively supported by this device.
-# This is a 16.16 fixed point number
-ro.opengles.version=131072
-
 # For the default value of agps
 ro.ril.def.agps.mode=2
 
@@ -74,13 +61,3 @@ ro.ril.update.vivow.acoustic=1
 # Properties of Scalado Denoise param.
 postprocess.iso_midband=400
 postprocess.denoise_level=5
-
-# Recording Audio Workaround
-ro.camera.sound.disabled=1
-
-# camera preview hack
-ro.camera.preview=true
-
-# USB Mount
-persist.sys.usb.config=mass_storage,adb
-persist.service.adb.enable=1

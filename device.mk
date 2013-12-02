@@ -51,19 +51,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.enable.a52=0 \
     ro.ril.enable.a53=1 \
     ro.ril.def.agps.mode=6 \
-    htc.audio.alt.enable=1 \
-    htc.audio.hac.enable=1 \
     ro.com.google.clientidbase=android-htc \
     ro.com.google.clientidbase.yt=android-htc \
     ro.com.google.clientidbase.am=android-verizon \
     ro.com.google.clientidbase.vs=android-verizon \
     ro.com.google.clientidbase.gmm=android-verizon \
     ro.com.google.clientidbase.ms=android-verizon \
-    ro.com.google.networklocation=1 \
-    ro.com.google.gmsversion=2.2_r8 \
-    ro.setupwizard.enable_bypass=1 \
-    dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
     ro.cdma.home.operator.numeric = 310012 \
     ro.cdma.home.operator.alpha = Verizon \
     persist.telephony.support_ipv6=true \
@@ -76,14 +69,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/vivow/overlay
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.vivow
+
 # gsm config xml file
 PRODUCT_COPY_FILES += \
     device/htc/vivow/voicemail-conf.xml:system/etc/voicemail-conf.xml \
     device/htc/vivow/apns-conf.xml:system/etc/apns-conf.xml
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.vivow
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
