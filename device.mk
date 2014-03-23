@@ -17,7 +17,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # common msm7x30 configs
-$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
+#$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 
 # htc audio settings
 $(call inherit-product, device/htc/vivow/media_htcaudio.mk)
@@ -34,13 +34,27 @@ PRODUCT_COPY_FILES += device/common/gps/gps.conf_US:system/etc/gps.conf
 
 PRODUCT_COPY_FILES += \
     device/htc/vivow/ramdisk/init.vivow.rc:root/init.vivow.rc \
+    device/htc/vivow/ramdisk/init.rc:root/init.rc \
     device/htc/vivow/ramdisk/init.vivow.usb.rc:root/init.vivow.usb.rc \
     device/htc/vivow/ramdisk/fstab.vivow:root/fstab.vivow \
     device/htc/vivow/ramdisk/ueventd.vivow.rc:root/ueventd.vivow.rc
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/vivow/device-vendor.mk)
@@ -51,6 +65,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.enable.a52=0 \
     ro.ril.enable.a53=1 \
     ro.ril.def.agps.mode=6 \
+    ro.com.google.locationfeatures=1 \
+    ro.com.google.networklocation=1 \
+    ro.com.google.gmsversion=4.0_r3 \
+    ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    dalvik.vm.dexopt-flags=m=y \
+    ro.kernel.android.checkjni=0 
     ro.com.google.clientidbase=android-htc \
     ro.com.google.clientidbase.yt=android-htc \
     ro.com.google.clientidbase.am=android-verizon \
@@ -103,7 +124,16 @@ PRODUCT_COPY_FILES += \
 
 # Device specific firmware
 PRODUCT_COPY_FILES += \
+    device/htc/vivow/firmware/vidc_720p_command_control.fw:system/etc/firmware/vidc_720p_command_control.fw \
+    device/htc/vivow/firmware/vidc_720p_h263_dec_mc.fw:system/etc/firmware/vidc_720p_h263_dec_mc.fw \
+    device/htc/vivow/firmware/vidc_720p_h264_dec_mc.fw:system/etc/firmware/vidc_720p_h264_dec_mc.fw \
+    device/htc/vivow/firmware/vidc_720p_h264_enc_mc.fw:system/etc/firmware/vidc_720p_h264_enc_mc.fw \
+    device/htc/vivow/firmware/vidc_720p_mp4_dec_mc.fw:system/etc/firmware/vidc_720p_mp4_dec_mc.fw \
+    device/htc/vivow/firmware/vidc_720p_mp4_enc_mc.fw:system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
+    device/htc/vivow/firmware/vidc_720p_vc1_dec_mc.fw:system/etc/firmware/vidc_720p_vc1_dec_mc.fw \
     device/htc/vivow/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
+    device/htc/vivow/firmware/fw_bcmdhd.bin:system/vendor/firmware/fw_bcmdhd.bin \
+    device/htc/vivow/firmware/fw_bcmdhd_apsta.bin:system/vendor/firmware/fw_bcmdhd_apsta.bin \
     device/htc/vivow/firmware/default.acdb:system/etc/firmware/default.acdb \
     device/htc/vivow/firmware/default_mfg.acdb:system/etc/firmware/default_mfg.acdb \
     device/htc/vivow/firmware/default_org.acdb:system/etc/firmware/default_org.acdb \
@@ -168,3 +198,123 @@ PRODUCT_COPY_FILES += \
 # Softkey Rotation Script
 PRODUCT_COPY_FILES += \
     device/htc/vivow/rotate_lights.sh:/system/etc/rotate_lights.sh
+
+# stuff common to all HTC phones
+$(call inherit-product, device/htc/common/common.mk)
+
+# htc audio settings
+$(call inherit-product, device/htc/vivow/media_htcaudio.mk)
+
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+
+# media configs
+PRODUCT_COPY_FILES += \
+    device/htc/vivow/prebuilt/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/vivow/prebuilt/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/vivow/prebuilt/audio_policy.conf:system/etc/audio_policy.conf
+
+# adb hack
+PRODUCT_COPY_FILES += \
+    device/htc/vivow/prebuilt/20fixup:system/etc/init.d/20fixup
+
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.primary.msm7x30 \
+    audio_policy.msm7x30 \
+    audio.usb.default \
+    audio_policy.conf \
+    libaudioutils \
+    libaudio-resampler \
+    libtinyalsa \
+    libaudioparameter
+
+
+# Sensors, GPS, Lights
+PRODUCT_PACKAGES += \
+    gps.vivow \
+    lights.vivow \
+    sensors.vivow
+
+# Video
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    copybit.msm7x30 \
+    gralloc.msm7x30 \
+    hwcomposer.msm7x30 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer
+
+#wireless
+PRODUCT_PACKAGES += \
+    libnetcmdiface
+
+# Power HAL
+PRODUCT_PACKAGES += \
+    power.vivow
+
+# Media
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVenc \
+    libmm-omxcore \
+    libdivxdrmdecrypt \
+    libOmxVdec \
+    libstagefrighthw
+
+# Misc
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory \
+    libsurfaceflinger_client
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    librs_jni
+
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+# DeviceSettings
+PRODUCT_PACKAGES += \
+	DeviceSettings
+
+PRODUCT_PACKAGES += \
+    camera.msm7x30
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.fw.bg_apps_limit=12
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# use high-density artwork where available
+PRODUCT_LOCALES += hdpi
+
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    debug.composition.type=gpu \
+    debug.sf.hw=1 \
+    debug.hwc.fakevsync=1 \
+    debug.egl.hw=1 \
+    debug.egl.recordable.rgba8888=1 \
+    debug.sf.no_hw_vsync=1 \
+    ro.zygote.disable_gl_preload=true \
+    debug.hwui.render_dirty_regions=false \
+    persist.webview.provider=classic

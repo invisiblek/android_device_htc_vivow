@@ -1,6 +1,8 @@
 # Inherit AOSP device configuration for inc.
 $(call inherit-product, device/htc/vivow/full_vivow.mk)
 
+PRODUCT_RELEASE_NAME := Inc2
+
 # Inherit some common cm stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, vendor/cm/config/gsm.mk)
